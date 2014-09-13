@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+$LOAD_PATH.unshift File.expand_path("#{__FILE__}/../../lib")
+
+require 'yaml'
+
+require 'sync_dir_to_board'
+
+config = {}
+config_file = './.trello.yaml'
+
+config.merge!(YAML.load_file(config_file)) if File.exist?(config_file)
+
+SyncDirToBoard.new(config).run!
